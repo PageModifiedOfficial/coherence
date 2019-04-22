@@ -32,9 +32,6 @@ defmodule Coherence.LockableService do
 
   def unlock_token(user) do
     token = Controller.random_string(48)
-
-    [Config.module(), Coherence, Schemas]
-    |> Module.concat()
-    |> apply(:update_user, [user, %{unlock_token: token}])
+    apply(Config.user_schema(), :update_user, [user, %{unlock_token: token}])
   end
 end
