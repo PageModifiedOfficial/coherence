@@ -33,6 +33,6 @@ defmodule Coherence.LockableService do
   def unlock_token(user) do
     token = Controller.random_string(48)
 
-    Config.repo().update.update(Config.user_schema().changeset(user, %{unlock_token: token}))
+    Config.repo().update(Config.user_schema().changeset(user, %{unlock_token: token}))
   end
 end
